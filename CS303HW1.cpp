@@ -20,5 +20,5 @@ int main()
     checkInt(numArray);
     changeInt(numArray);
     newArray = addInt(numArray);
-    removeInts(numArray);
+    removeInt(numArray);
 }

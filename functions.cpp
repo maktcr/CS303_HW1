@@ -66,15 +66,29 @@ void changeInt(array<int, 100> numArray) {
 	int changeNum;
 	int index;
 
-	//Get index and number from user
-	cout << "\nEnter the index of the number you want to change" << endl;
-	cin >> index;
-	cout << "Enter the number you would like in place of " << numArray[index] << " at index " << index << endl;
-	cin >> changeNum;
-	cout << "You changed the number at index " << index << " from " << numArray[index] << " to " << changeNum << endl;
+	try {
+		//Get index and number from user
+		cout << "\nEnter the index of the number you want to change" << endl;
+		cin >> index;
 
-	//use index and number to change array
-	numArray[index] = changeNum;
+		//throw error if index is out of bounds
+		if (index > 100) {
+			throw(index);
+		}
+
+		cout << "Enter the number you would like in place of " << numArray[index] << " at index " << index << endl;
+		cin >> changeNum;
+		cout << "You changed the number at index " << index << " from " << numArray[index] << " to " << changeNum << endl;
+
+		//use index and number to change array
+		numArray[index] = changeNum;
+	}
+	catch (int index) {
+		cout << "Selected Index is out of bounds." << endl;
+	}
+	catch (...) {
+		cout << "You entered invalid index or number to change." << endl;
+	}
 
 }
 
@@ -84,27 +98,48 @@ array<int, 200> addInt(array<int, 100> numArray) {
 	int addNum;
 	int addIndex = 100;
 
+	//copy the old array into a new one with added size
 	for (int i = 0; i < 100; i++) {
 		newArray[i] = numArray[i];
 	}
 
 	cout << "\nEnter a number to add at the end of the array " << endl;
-	cin >> addNum;
-	cout << "You added the number " << addNum << " at index 100" << endl;
-	
-	newArray[addIndex] = addNum;
-	
-	return newArray;
+
+	//try and catch statements to validate user input
+	try {
+		cin >> addNum;
+
+		//throw error if input is a negative number or zero
+		if (addNum <= 0) {
+			throw(addNum);
+		}
+
+		cout << "You added the number " << addNum << " at index 100" << endl;
+
+		newArray[addIndex] = addNum;
+
+		return newArray;
+	}
+	catch (int input) {
+		cout << "You entered a negative input." << endl;
+	}
+	catch (...) {
+		cout << "You entered an invalid input." << endl;
+	}
 }
 
-void removeInts(array<int, 100> numArray) {
-
+//this function will replace the value of array index to zero
+void removeInt(array<int, 100> numArray) {
+	
 	int index;
 
-	cout << "\nEnter the index of the number you want to remove from the Array" << endl;
+	//get input from the user
+	cout << "\nEnter the index of the number you want to remove from the Array." << endl;
 	cin >> index;
+	//display the number that was changed and its index
 	cout << "The number " << numArray[index] << " at index " << index << " was changed to zero.";
 
+	//after displaying to user, change the index to zero
 	numArray[index] = 0;
-	 
+
 }
