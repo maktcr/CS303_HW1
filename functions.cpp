@@ -97,7 +97,7 @@ array<int, 200> addInt(array<int, 100> numArray) {
 	return newArray;
 }
 
-void removeInt(array<int, 100> numArray) {
+void removeInts(array<int, 100> numArray) {
 
 	int index;
 
